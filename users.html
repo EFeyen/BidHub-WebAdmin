@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html ng-app="auctionApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,300,100,500' rel='stylesheet' type='text/css'>
+    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="controllers.js"></script>
+    <title>Manage Auction Users</title>
+    <style>
+        body {
+            margin: 0px;
+            font-family: 'Roboto', sans-serif;
+            background: #303030;
+        }
+
+        #container {
+            padding-top: 20px;
+            width: 740px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #header {
+            height: 80px;
+            line-height: 80px;
+            text-align: left;
+            font-weight: 200;
+            font-size: 26px;
+            color: #fff;
+        }
+
+        #content {
+            min-height: 300px;
+        }
+
+        .card {
+            width: 360px;
+            background: #515359;
+            border-radius: 3px;
+            -webkit-box-shadow: -2px 4px 16px -3px rgba(0,0,0,0.75);
+            -moz-box-shadow: -2px 4px 16px -3px rgba(0,0,0,0.75);
+            box-shadow: -2px 4px 16px -3px rgba(0,0,0,0.75);
+            margin-bottom: 20px;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
+
+		.full {
+			clear: both;
+			width: 740px;
+		}
+
+        .header {
+            height: 30px;
+            background-color: #669900;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .footer {
+            height: 10px;
+            background-color: #669900;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .image {
+            width: 360px;
+            height: 160px;
+            overflow: hidden;
+        }
+
+        .image img {
+            width: 360px;
+        }
+
+        .infocontainer {
+            padding: 10px;
+            min-height: 50px;
+        }
+
+        .names {
+            float: left;
+        }
+
+        .title {
+            font-weight: 200;
+            color: #fff;
+            font-size: 22px;
+        }
+
+        .donor {
+            font-size: 14px;
+            color: #999;
+            font-weight: 200;
+            text-transform: uppercase;
+        }
+
+        .bids {
+            float: right;
+            text-align: right;
+        }
+
+        .winningbid {
+            color: #669900;
+            font-size: 22px;
+        }
+
+        .decription {
+            color: #fff;
+            font-weight: 300;
+            font-size: 13px;
+            padding: 10px;
+            min-height: 120px;
+            max-height: 120px;
+            overflow: scroll;
+        }
+
+        input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            font-family: "Roboto", sans-serif;
+            font-weight: 200;
+            font-size: 16px;
+            padding: 5px;
+            color: #fff;
+        }
+
+        textarea {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            font-family: "Roboto", sans-serif;
+            font-weight: 200;
+            font-size: 13px;
+            width: 100%;
+            min-height: 50px;
+            color: #fff;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #777;
+        }
+
+        :-moz-placeholder { /* Firefox 18- */
+            color: #777;
+        }
+
+        ::-moz-placeholder {  /* Firefox 19+ */
+            color: #777;
+        }
+
+        :-ms-input-placeholder {
+            color: #777;
+        }
+
+        .removebutton {
+            display: none;
+        }
+
+        .card:hover .removebutton {
+            display: block;
+        }
+    </style>
+</head>
+<body ng-controller="ItemCardsCtrl">
+<div id="container">
+    <div id="header">
+        AUCTION USER MONITORING
+    </div>
+    <div id="content">
+    	<div class="card full">
+            <div class="header" style="background: #369"></div>
+            <div style="height: 1px; background: #aaaaaa"></div>
+            <div class="infocontainer" ng-repeat="user in users" ng-if="user.bidderNumber != '999'">
+                <div class="names">
+                    <span class="title">{{user.first_name}} {{user.last_name}}</span><br/>
+                    <span class="donor">{{user.email | lowercase}}</span><br/>
+                </div>
+                <div class="bids">
+                    <span class="winningbid" ng-if="user.bidderNumber == ''">
+                    	<input ng-model="user.bidnum" type="text" class="winningbid" placeholder="100" style="width: 40px; margin-left: 5px;"/><br/>
+		                <input type="button" value="save bidder number"
+								style="background: #669900; border: 1px solid #fff;"
+								ng-click="updateUser(user.id, user.bidnum)"/>
+                    </span>
+	            	<span class="winningbid" ng-if="user.bidderNumber != ''">
+	            		{{user.bidderNumber}}
+		                <input type="button" value="X"
+								style="background: #993300; border: 1px solid #fff;"
+								ng-click="updateUser(user.id, '0')"/><br/>
+    	        	</span>
+                    <span class="donor" ng-if="user.bidderNumber != ''">BIDDER NUMBER<span>
+                </div>
+	            <div style="height: 1px; background: #aaaaaa"></div>
+            </div>
+            <div style="height: 1px; background: #aaaaaa"></div>
+            <div class="footer" style="background: #369"></div>
+    	</div>
+    </div>
+</div>
+</body>
+</html>
