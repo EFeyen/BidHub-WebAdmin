@@ -27,7 +27,7 @@ Assuming you've already set up Kinvey, you'll need to get your application key f
 Open index.html in Chrome and you're good to go! Put this on any web server for easy access, but not really. These files have the plain text username and password of a user with complete control of the users collection. This should not just be "put on any web server". 
 
 ## Page Listing
-*`index.html` shows basic auction and item stats; it also has a form for adding new items to the auction, though I'm not certain that form works - I moved that function to a separate page.
-*`items.html` shows all the auction items and allows you to add new items.
-*`users.html` lists all registered users and allows you to assign them a bidder number (or remove their bidder number).
-*`winning.html` lists all items in the auction with the current high bid & bidder.
+* `index.html` shows basic auction and item stats; it also has a form for adding new items to the auction, though I'm not certain that form works - I moved that function to a separate page.
+* `items.html` shows all the auction items and allows you to add new items.
+* `users.html` lists all registered users and allows you to assign them a bidder number (or remove their bidder number).
+* `winning.html` lists all items in the auction with the current high bid & bidder.
